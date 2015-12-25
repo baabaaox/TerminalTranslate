@@ -1,7 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
 # echo 'test' >> test.txt
 
 basepath=$(cd `dirname $0`; pwd)
-# alias tt=$basepath'/TerminalTranslate.py'
-echo alias tt="$basepath/TerminalTranslate.py" >> /etc/bash.bashrc
+case $SHELL in
+*/zsh)
+    echo alias tt="'$basepath/TerminalTranslate.py -w'" >> ~/.zshrc
+    # source ~/.zshrc
+    ;;
+*/bash)
+    echo alias tt="'$basepath/TerminalTranslate.py -w'" >> ~/.bashrc
+    # source ~/.bashrc
+    ;;
+esac
